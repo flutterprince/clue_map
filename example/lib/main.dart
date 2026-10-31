@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -34,7 +35,8 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     try {
       platformVersion =
-          await _clueMapPlugin.getPlatformVersion() ?? 'Unknown platform version';
+          await _clueMapPlugin.getPlatformVersion() ??
+          'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -63,7 +65,10 @@ class _MyAppState extends State<MyApp> {
             children: [
               Text(
                 'Running on: $_platformVersion',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
@@ -91,7 +96,8 @@ class _MyAppState extends State<MyApp> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                  'Tapped at: ${latLng.latitude.toStringAsFixed(4)}, ${latLng.longitude.toStringAsFixed(4)}'),
+                                'Tapped at: ${latLng.latitude.toStringAsFixed(4)}, ${latLng.longitude.toStringAsFixed(4)}',
+                              ),
                               duration: const Duration(seconds: 1),
                             ),
                           );
@@ -100,7 +106,10 @@ class _MyAppState extends State<MyApp> {
                       const SizedBox(height: 12),
                       Text(
                         'Location: $_latitude, $_longitude',
-                        style: const TextStyle(fontSize: 14, color: Colors.black87),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black87,
+                        ),
                       ),
                     ],
                   ),

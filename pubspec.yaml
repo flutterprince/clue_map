@@ -1,8 +1,7 @@
 name: clue_map
 description: >-
-  A hyper-fast Flutter map plugin providing ClueMapCard with custom marker pins
-  (network, asset, bytes), theme presets (minimalist, dark, retro), and
-  automated reverse-geocoded city boundary overlays using OpenStreetMap Nominatim.
+  A Flutter map plugin providing ClueMapCard with custom markers, theme
+  presets (minimalist, dark, retro), and automated reverse-geocoded city boundaries.
 version: 0.0.2
 homepage: https://github.com/flutterprince/clue_map
 repository: https://github.com/flutterprince/clue_map
@@ -31,16 +30,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.googlemap.com.googlemaparea
-        pluginClass: GooglemapareaPlugin
+        package: com.clue_map.clue_map
+        pluginClass: ClueMapPlugin
       ios:
-        pluginClass: GooglemapareaPlugin
-      linux:
-        pluginClass: GooglemapareaPlugin
-      macos:
-        pluginClass: GooglemapareaPlugin
-      windows:
-        pluginClass: GooglemapareaPluginCApi
+        pluginClass: ClueMapPlugin
       web:
         pluginClass: ClueMapWeb
         fileName: clue_map_web.dart

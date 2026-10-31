@@ -7,7 +7,7 @@ import 'googlemaparea_platform_interface.dart';
 class MethodChannelGooglemaparea extends GooglemapareaPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('googlemaparea');
+  final methodChannel = const MethodChannel('clue_map');
 
   @override
   Future<String?> getPlatformVersion() async {

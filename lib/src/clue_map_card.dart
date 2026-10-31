@@ -144,8 +144,7 @@ class ClueMapCard extends StatefulWidget {
     this.height,
     required this.latitude,
     required this.longitude,
-    this.markerIcon =
-        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/henri-4z3zw3/assets/jexqyq0w9i7r/marker.png',
+    this.markerIcon = 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/henri-4z3zw3/assets/jexqyq0w9i7r/marker.png',
     this.markerAsset,
     this.markerBytes,
     this.markerAnchor = const Offset(0.5, 1.0),
@@ -233,7 +232,8 @@ class ClueMapCard extends StatefulWidget {
 /// Backwards compatibility alias for MapClueCard.
 typedef MapClueCard = ClueMapCard;
 
-class _ClueMapCardState extends State<ClueMapCard> with AutomaticKeepAliveClientMixin {
+class _ClueMapCardState extends State<ClueMapCard>
+    with AutomaticKeepAliveClientMixin {
   // Global static caches for zero-lag instant rendering
   static final Map<String, gmap.BitmapDescriptor> _pinIconCache = {};
   static final Map<String, Map<String, dynamic>> _geojsonBoundaryCache = {};
@@ -260,7 +260,8 @@ class _ClueMapCardState extends State<ClueMapCard> with AutomaticKeepAliveClient
   void didUpdateWidget(covariant ClueMapCard oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    final positionChanged = oldWidget.latitude != widget.latitude ||
+    final positionChanged =
+        oldWidget.latitude != widget.latitude ||
         oldWidget.longitude != widget.longitude;
 
     if (positionChanged) {
@@ -298,8 +299,8 @@ class _ClueMapCardState extends State<ClueMapCard> with AutomaticKeepAliveClient
     final String cacheKey = widget.markerBytes != null
         ? 'bytes_${widget.markerBytes.hashCode}_${widget.markerSize}'
         : (widget.markerAsset != null && widget.markerAsset!.isNotEmpty)
-            ? 'asset_${widget.markerAsset}_${widget.markerSize}'
-            : 'url_${widget.markerIcon}_${widget.markerSize}';
+        ? 'asset_${widget.markerAsset}_${widget.markerSize}'
+        : 'url_${widget.markerIcon}_${widget.markerSize}';
 
     // Instant zero-lag cache lookup
     if (_pinIconCache.containsKey(cacheKey)) {
@@ -333,13 +334,15 @@ class _ClueMapCardState extends State<ClueMapCard> with AutomaticKeepAliveClient
         targetWidth: widget.markerSize,
       );
       final ui.FrameInfo frame = await codec.getNextFrame();
-      final ByteData? resizedBytes =
-          await frame.image.toByteData(format: ui.ImageByteFormat.png);
+      final ByteData? resizedBytes = await frame.image.toByteData(
+        format: ui.ImageByteFormat.png,
+      );
 
       if (resizedBytes == null) return;
 
-      final icon =
-          gmap.BitmapDescriptor.bytes(resizedBytes.buffer.asUint8List());
+      final icon = gmap.BitmapDescriptor.bytes(
+        resizedBytes.buffer.asUint8List(),
+      );
 
       _pinIconCache[cacheKey] = icon;
 
@@ -428,28 +431,34 @@ class _ClueMapCardState extends State<ClueMapCard> with AutomaticKeepAliveClient
       if (rings.isEmpty) return null;
 
       final List exteriorRaw = rings[0] as List;
-      final List<gmap.LatLng> points =
-          List<gmap.LatLng>.generate(exteriorRaw.length, (index) {
-        final pt = exteriorRaw[index] as List;
-        return gmap.LatLng(
-          (pt[1] as num).toDouble(),
-          (pt[0] as num).toDouble(),
-        );
-      }, growable: false);
+      final List<gmap.LatLng> points = List<gmap.LatLng>.generate(
+        exteriorRaw.length,
+        (index) {
+          final pt = exteriorRaw[index] as List;
+          return gmap.LatLng(
+            (pt[1] as num).toDouble(),
+            (pt[0] as num).toDouble(),
+          );
+        },
+        growable: false,
+      );
 
       if (points.isEmpty) return null;
 
       final List<List<gmap.LatLng>> holes = [];
       for (int i = 1; i < rings.length; i++) {
         final List holeRaw = rings[i] as List;
-        final List<gmap.LatLng> holePoints =
-            List<gmap.LatLng>.generate(holeRaw.length, (index) {
-          final pt = holeRaw[index] as List;
-          return gmap.LatLng(
-            (pt[1] as num).toDouble(),
-            (pt[0] as num).toDouble(),
-          );
-        }, growable: false);
+        final List<gmap.LatLng> holePoints = List<gmap.LatLng>.generate(
+          holeRaw.length,
+          (index) {
+            final pt = holeRaw[index] as List;
+            return gmap.LatLng(
+              (pt[1] as num).toDouble(),
+              (pt[0] as num).toDouble(),
+            );
+          },
+          growable: false,
+        );
 
         if (holePoints.isNotEmpty) {
           holes.add(holePoints);
@@ -546,10 +555,9 @@ class _ClueMapCardState extends State<ClueMapCard> with AutomaticKeepAliveClient
 
     final double effectiveRadius = widget.cornerRadius;
 
-    BoxDecoration containerDecoration = widget.decoration ??
-        BoxDecoration(
-          borderRadius: BorderRadius.circular(effectiveRadius),
-        );
+    BoxDecoration containerDecoration =
+        widget.decoration ??
+        BoxDecoration(borderRadius: BorderRadius.circular(effectiveRadius));
 
     return Container(
       width: widget.width,

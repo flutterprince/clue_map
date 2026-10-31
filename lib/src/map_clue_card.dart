@@ -138,8 +138,7 @@ class MapClueCard extends StatefulWidget {
     this.height,
     required this.latitude,
     required this.longitude,
-    this.markerIcon =
-        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/henri-4z3zw3/assets/jexqyq0w9i7r/marker.png',
+    this.markerIcon = 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/henri-4z3zw3/assets/jexqyq0w9i7r/marker.png',
     this.markerAsset,
     this.markerBytes,
     this.markerAnchor = const Offset(0.5, 1.0),
@@ -244,7 +243,8 @@ class _MapClueCardState extends State<MapClueCard> {
   void didUpdateWidget(covariant MapClueCard oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    final positionChanged = oldWidget.latitude != widget.latitude ||
+    final positionChanged =
+        oldWidget.latitude != widget.latitude ||
         oldWidget.longitude != widget.longitude;
 
     if (positionChanged) {
@@ -301,13 +301,15 @@ class _MapClueCardState extends State<MapClueCard> {
         targetWidth: widget.markerSize,
       );
       final ui.FrameInfo frame = await codec.getNextFrame();
-      final ByteData? resizedBytes =
-          await frame.image.toByteData(format: ui.ImageByteFormat.png);
+      final ByteData? resizedBytes = await frame.image.toByteData(
+        format: ui.ImageByteFormat.png,
+      );
 
       if (resizedBytes == null) return;
 
-      final icon =
-          gmap.BitmapDescriptor.bytes(resizedBytes.buffer.asUint8List());
+      final icon = gmap.BitmapDescriptor.bytes(
+        resizedBytes.buffer.asUint8List(),
+      );
 
       if (mounted) {
         setState(() => _pinIcon = icon);
@@ -380,10 +382,9 @@ class _MapClueCardState extends State<MapClueCard> {
       final List<gmap.LatLng> points = [];
       for (final pt in exteriorRaw) {
         if (pt is List && pt.length >= 2) {
-          points.add(gmap.LatLng(
-            (pt[1] as num).toDouble(),
-            (pt[0] as num).toDouble(),
-          ));
+          points.add(
+            gmap.LatLng((pt[1] as num).toDouble(), (pt[0] as num).toDouble()),
+          );
         }
       }
 
@@ -395,10 +396,9 @@ class _MapClueCardState extends State<MapClueCard> {
         final List<gmap.LatLng> holePoints = [];
         for (final pt in holeRaw) {
           if (pt is List && pt.length >= 2) {
-            holePoints.add(gmap.LatLng(
-              (pt[1] as num).toDouble(),
-              (pt[0] as num).toDouble(),
-            ));
+            holePoints.add(
+              gmap.LatLng((pt[1] as num).toDouble(), (pt[0] as num).toDouble()),
+            );
           }
         }
         if (holePoints.isNotEmpty) {
@@ -495,10 +495,9 @@ class _MapClueCardState extends State<MapClueCard> {
 
     final double effectiveRadius = widget.cornerRadius;
 
-    BoxDecoration containerDecoration = widget.decoration ??
-        BoxDecoration(
-          borderRadius: BorderRadius.circular(effectiveRadius),
-        );
+    BoxDecoration containerDecoration =
+        widget.decoration ??
+        BoxDecoration(borderRadius: BorderRadius.circular(effectiveRadius));
 
     Widget cardBody = Container(
       width: widget.width,

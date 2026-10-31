@@ -6,7 +6,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   MethodChannelGooglemaparea platform = MethodChannelGooglemaparea();
-  const MethodChannel channel = MethodChannel('googlemaparea');
+  const MethodChannel channel = MethodChannel('clue_map');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger

@@ -1,4 +1,4 @@
-group = "com.googlemap.com.googlemaparea"
+group = "com.clue_map.clue_map"
 version = "1.0-SNAPSHOT"
 
 buildscript {
@@ -26,7 +26,7 @@ plugins {
 }
 
 android {
-    namespace = "com.googlemap.com.googlemaparea"
+    namespace = "com.clue_map.clue_map"
 
     compileSdk = 36
 
