@@ -1,7 +1,12 @@
 name: clue_map
-description: "A fast, zero-lag Flutter plugin for clue maps featuring custom pin icons, theme presets, and automated city boundary overlays."
-version: 0.0.1
-homepage: https://github.com/yourusername/clue_map
+description: >-
+  A hyper-fast Flutter map plugin providing ClueMapCard with custom marker pins
+  (network, asset, bytes), theme presets (minimalist, dark, retro), and
+  automated reverse-geocoded city boundary overlays using OpenStreetMap Nominatim.
+version: 0.0.2
+homepage: https://github.com/flutterprince/clue_map
+repository: https://github.com/flutterprince/clue_map
+issue_tracker: https://github.com/flutterprince/clue_map/issues
 
 environment:
   sdk: ^3.13.0
